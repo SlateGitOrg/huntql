@@ -211,8 +211,9 @@ an unguarded `(hit - off)/(1 - off)` exploded for dense channels.
 
 **Complexity.** Grouping is O(N) hash inserts. Scoring a group of `n` events
 costs O(n log n) (sort) + O(L log L) (FFT, `L ≤ 2^17`) + O(n) per candidate.
-On the benchmark's 914k-row conn log, `conn | beacon` scores 8,201 channels
-in about 4 s on one core.
+On the benchmark's 914k-row conn log, `conn | beacon` groups ~15.4k
+channels (929k retained timestamps + groups) and finishes in about 4 s on
+one core.
 
 ## Evaluation harness
 
