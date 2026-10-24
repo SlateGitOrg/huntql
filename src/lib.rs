@@ -27,6 +27,7 @@ pub mod output;
 pub mod parser;
 pub mod plan;
 pub mod planner;
+pub mod repl;
 pub mod schema;
 pub mod timefmt;
 pub mod value;
