@@ -18,6 +18,7 @@
 pub mod ast;
 pub mod beacon;
 pub mod diag;
+pub mod eval;
 pub mod exec;
 pub mod expr;
 pub mod gen;
