@@ -1,0 +1,6 @@
+error[plan]: cannot compare duration with int
+ --> 1:14
+  |
+1 | conn | where duration > 30 | head
+  |              ^^^^^^^^^^^^^ `duration` vs `int`
+  = help: write durations with a unit, e.g. `duration > 30s`

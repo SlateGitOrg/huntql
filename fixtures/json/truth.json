@@ -1,0 +1,77 @@
+{
+  "seed": 11,
+  "beacons": [
+    {
+      "src": "10.20.1.15",
+      "dst": "203.0.113.72",
+      "dport": 80,
+      "domain": "stiimjqz.test",
+      "period_s": 900.0,
+      "jitter": 0.0,
+      "dropout": 0.0,
+      "interleave": 0.0,
+      "first": "2024-03-04T00:01:36.177454Z",
+      "connections": 12
+    },
+    {
+      "src": "10.20.1.10",
+      "dst": "203.0.113.108",
+      "dport": 80,
+      "domain": "vqrnqrob.test",
+      "period_s": 900.0,
+      "jitter": 0.3,
+      "dropout": 0.1,
+      "interleave": 0.5,
+      "first": "2024-03-04T00:44:12.734944Z",
+      "connections": 14
+    }
+  ],
+  "hard_negatives": [
+    {
+      "src": "10.20.1.10",
+      "dst": "198.18.204.40",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 1800.0
+    },
+    {
+      "src": "10.20.1.11",
+      "dst": "198.18.115.18",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 600.0
+    },
+    {
+      "src": "10.20.1.12",
+      "dst": "198.18.150.80",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 120.0
+    },
+    {
+      "src": "10.20.1.13",
+      "dst": "198.19.16.179",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 600.0
+    },
+    {
+      "src": "10.20.1.14",
+      "dst": "198.18.243.205",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 120.0
+    },
+    {
+      "src": "10.20.1.15",
+      "dst": "198.18.211.120",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 120.0
+    }
+  ],
+  "notes": [
+    "10.20.1.11 issues ~30 NXDOMAIN lookups for random-looking .test names starting at 2024-03-04T01:48:00Z",
+    "beacons use user agent \"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)\" (http) and JA3 72a589da586844d7f0818ce684948eea (ssl)"
+  ]
+}

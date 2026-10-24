@@ -1,0 +1,258 @@
+{
+  "seed": 7,
+  "beacons": [
+    {
+      "src": "10.20.1.17",
+      "dst": "203.0.113.101",
+      "dport": 443,
+      "domain": "iaqqajji.test",
+      "period_s": 900.0,
+      "jitter": 0.5,
+      "dropout": 0.0,
+      "interleave": 1.0,
+      "first": "2024-03-04T00:21:49.530427Z",
+      "connections": 100
+    },
+    {
+      "src": "10.20.1.25",
+      "dst": "203.0.113.202",
+      "dport": 8443,
+      "domain": "qudyabqx.test",
+      "period_s": 120.0,
+      "jitter": 0.1,
+      "dropout": 0.0,
+      "interleave": 0.0,
+      "first": "2024-03-04T01:46:44.738501Z",
+      "connections": 323
+    },
+    {
+      "src": "10.20.1.14",
+      "dst": "203.0.113.32",
+      "dport": 443,
+      "domain": "pkqxegzu.test",
+      "period_s": 3600.0,
+      "jitter": 0.3,
+      "dropout": 0.0,
+      "interleave": 0.0,
+      "first": "2024-03-04T00:19:40.048438Z",
+      "connections": 14
+    },
+    {
+      "src": "10.20.1.18",
+      "dst": "203.0.113.186",
+      "dport": 80,
+      "domain": "xrkgyqqd.test",
+      "period_s": 300.0,
+      "jitter": 0.3,
+      "dropout": 0.25,
+      "interleave": 0.0,
+      "first": "2024-03-04T00:57:52.402044Z",
+      "connections": 118
+    },
+    {
+      "src": "10.20.1.21",
+      "dst": "203.0.113.160",
+      "dport": 8443,
+      "domain": "wtycmyyw.test",
+      "period_s": 3600.0,
+      "jitter": 0.8,
+      "dropout": 0.0,
+      "interleave": 0.5,
+      "first": "2024-03-04T00:28:33.458621Z",
+      "connections": 32
+    },
+    {
+      "src": "10.20.1.11",
+      "dst": "203.0.113.209",
+      "dport": 443,
+      "domain": "kddccrin.test",
+      "period_s": 300.0,
+      "jitter": 0.5,
+      "dropout": 0.25,
+      "interleave": 0.0,
+      "first": "2024-03-04T00:13:42.655103Z",
+      "connections": 138
+    }
+  ],
+  "hard_negatives": [
+    {
+      "src": "10.20.1.10",
+      "dst": "198.18.115.18",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 3600.0
+    },
+    {
+      "src": "10.20.1.11",
+      "dst": "198.18.211.120",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 300.0
+    },
+    {
+      "src": "10.20.1.12",
+      "dst": "198.19.220.2",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 300.0
+    },
+    {
+      "src": "10.20.1.13",
+      "dst": "198.18.184.159",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 1800.0
+    },
+    {
+      "src": "10.20.1.14",
+      "dst": "198.18.232.245",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 300.0
+    },
+    {
+      "src": "10.20.1.15",
+      "dst": "198.18.232.245",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 3600.0
+    },
+    {
+      "src": "10.20.1.16",
+      "dst": "198.19.3.242",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 60.0
+    },
+    {
+      "src": "10.20.1.17",
+      "dst": "198.19.80.160",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 3600.0
+    },
+    {
+      "src": "10.20.1.18",
+      "dst": "198.18.115.18",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 120.0
+    },
+    {
+      "src": "10.20.1.19",
+      "dst": "198.18.0.50",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 30.0
+    },
+    {
+      "src": "10.20.1.20",
+      "dst": "198.19.192.141",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 1800.0
+    },
+    {
+      "src": "10.20.1.21",
+      "dst": "198.19.137.164",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 3600.0
+    },
+    {
+      "src": "10.20.1.22",
+      "dst": "198.18.60.195",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 300.0
+    },
+    {
+      "src": "10.20.1.23",
+      "dst": "198.19.137.164",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 60.0
+    },
+    {
+      "src": "10.20.1.24",
+      "dst": "198.19.36.159",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 600.0
+    },
+    {
+      "src": "10.20.1.25",
+      "dst": "198.18.194.227",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 900.0
+    },
+    {
+      "src": "10.20.1.26",
+      "dst": "198.18.194.25",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 30.0
+    },
+    {
+      "src": "10.20.1.27",
+      "dst": "198.18.148.80",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 900.0
+    },
+    {
+      "src": "10.20.1.28",
+      "dst": "198.18.167.249",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 3600.0
+    },
+    {
+      "src": "10.20.1.29",
+      "dst": "198.18.204.40",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 120.0
+    },
+    {
+      "src": "10.20.1.30",
+      "dst": "198.19.80.160",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 30.0
+    },
+    {
+      "src": "10.20.1.31",
+      "dst": "198.18.175.90",
+      "dport": 443,
+      "kind": "sync_client",
+      "mean_interval_s": 30.0
+    },
+    {
+      "src": "10.20.1.32",
+      "dst": "198.19.244.146",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 120.0
+    },
+    {
+      "src": "10.20.1.33",
+      "dst": "198.19.88.171",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 300.0
+    },
+    {
+      "src": "10.20.1.34",
+      "dst": "198.18.148.80",
+      "dport": 443,
+      "kind": "poller",
+      "mean_interval_s": 120.0
+    }
+  ],
+  "notes": [
+    "10.20.1.18 issues ~30 NXDOMAIN lookups for random-looking .test names starting at 2024-03-04T07:12:00Z",
+    "beacons use user agent \"Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)\" (http) and JA3 72a589da586844d7f0818ce684948eea (ssl)"
+  ]
+}

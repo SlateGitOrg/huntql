@@ -1,0 +1,6 @@
+error[parse]: expected `|` or end of query, found identifier `head`
+ --> 1:27
+  |
+1 | conn | where dport == 443 head 5
+  |                           ^^^^
+  = help: did you forget a `|` before `head`?

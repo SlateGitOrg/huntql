@@ -1,0 +1,5 @@
+error[plan]: unknown field `dprt`
+ --> 1:14
+  |
+1 | conn | where dprt == 443 | stats count() by src
+  |              ^^^^ did you mean `dport`?

@@ -1,0 +1,5 @@
+error[plan]: invalid regular expression: unclosed group
+ --> 1:21
+  |
+1 | http | where uri =~ "([a-z]+"
+  |                     ^^^^^^^^^

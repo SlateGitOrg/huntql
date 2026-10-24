@@ -1,0 +1,4 @@
+Scan conn (decode 5 of 21 columns: ts, id.orig_h, id.resp_h, id.resp_p, orig_bytes)
+  -> Filter (not is_private(id.resp_h))  (streaming, mem O(1))
+  -> Beacon [id.orig_h, id.resp_h, id.resp_p] min_count=20 min_score=0.5 max_events=20000  (blocking, mem O(groups x max_events))
+Output [src:addr, dst:addr, dport:int, count:int, period:duration, jitter:float, acf:float, score:float]

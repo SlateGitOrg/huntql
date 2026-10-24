@@ -1,0 +1,5 @@
+error[parse]: unknown operator `stast`
+ --> 1:8
+  |
+1 | conn | stast count() by src
+  |        ^^^^^ did you mean `stats`?

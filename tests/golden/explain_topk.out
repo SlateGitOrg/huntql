@@ -1,0 +1,7 @@
+Scan conn (decode 3 of 21 columns: id.orig_h, id.resp_p, proto)
+  -> Filter ((id.resp_p == 443) and (proto == "tcp"))  (streaming, mem O(1))
+  -> Aggregate [count()] by [id.orig_h]  (blocking, mem O(groups))
+  -> TopK k=10 [-count]  (blocking, mem O(k))
+Output [src:addr, count:int]
+note: merged adjacent filters into one conjunction
+note: fused sort + head 10 into a bounded top-k heap

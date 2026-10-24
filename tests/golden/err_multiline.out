@@ -1,0 +1,5 @@
+error[plan]: unknown field `cnt`
+ --> 5:9
+  |
+5 | | sort -cnt
+  |         ^^^ did you mean `count`?

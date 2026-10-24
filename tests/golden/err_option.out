@@ -1,0 +1,5 @@
+error[plan]: unknown option `min_scor`
+ --> 1:15
+  |
+1 | conn | beacon min_scor=0.5
+  |               ^^^^^^^^ did you mean `min_score`?

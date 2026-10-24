@@ -1,0 +1,6 @@
+error[lex]: unterminated string literal
+ --> 1:28
+  |
+1 | http | where user_agent == "Mozilla
+  |                            ^^^^^^^^ string starts here
+  = help: add a closing "
