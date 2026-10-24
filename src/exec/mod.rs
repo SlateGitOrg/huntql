@@ -184,9 +184,9 @@ pub fn build_operators(plan: &Plan, opts: ExecOptions) -> Vec<Box<dyn Operator>>
                 PlanOp::Project(cols) => Box::new(ops::Project(cols.clone())),
                 PlanOp::Extend(exprs) => Box::new(ops::Extend(exprs.clone())),
                 PlanOp::Head(n) => Box::new(ops::Head::new(*n)),
-                PlanOp::Tail(n) => Box::new(ops::Tail::new(*n)),
+                PlanOp::Tail(n) => Box::new(ops::Tail::new(*n, limit)),
                 PlanOp::Sort(keys) => Box::new(ops::Sort::new(keys.clone(), limit)),
-                PlanOp::TopK { keys, k } => Box::new(ops::TopK::new(keys.clone(), *k)),
+                PlanOp::TopK { keys, k } => Box::new(ops::TopK::new(keys.clone(), *k, limit)),
                 PlanOp::Dedup(keys) => Box::new(ops::Dedup::new(keys.clone(), limit)),
                 PlanOp::Aggregate { keys, aggs } => {
                     let out_types = out_schema.columns[keys.len()..]

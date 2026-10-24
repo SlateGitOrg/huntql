@@ -73,17 +73,20 @@ impl Operator for Head {
     }
 }
 
-/// Keeps the last `n` rows in a ring buffer: O(n) memory.
+/// Keeps the last `n` rows in a ring buffer: O(min(n, rows)) memory, capped
+/// by `limit` (`--max-groups`) like every other blocking operator.
 pub struct Tail {
     n: usize,
     buf: VecDeque<Row>,
+    limit: usize,
 }
 
 impl Tail {
-    pub fn new(n: u64) -> Self {
+    pub fn new(n: u64, limit: usize) -> Self {
         Tail {
             n: usize::try_from(n).unwrap_or(usize::MAX),
             buf: VecDeque::new(),
+            limit,
         }
     }
 }
@@ -97,6 +100,7 @@ impl Operator for Tail {
             self.buf.pop_front();
         }
         self.buf.push_back(row);
+        check_limit("tail", self.buf.len(), self.limit)?;
         Ok(Flow::Continue)
     }
 
@@ -197,20 +201,24 @@ impl Ord for Ranked {
 
 /// Bounded top-k: a max-heap of the k best rows seen so far, O(k) memory and
 /// O(n log k) time. Produces exactly what a stable sort + head k would.
+/// The heap is capped by `limit` (`--max-groups`), so a huge `k` cannot lift
+/// the cap that an unfused `sort` would enforce.
 pub struct TopK {
     keys: Rc<[SortSpec]>,
     k: usize,
     heap: BinaryHeap<Ranked>,
     seq: u64,
+    limit: usize,
 }
 
 impl TopK {
-    pub fn new(keys: Vec<SortSpec>, k: u64) -> Self {
+    pub fn new(keys: Vec<SortSpec>, k: u64, limit: usize) -> Self {
         TopK {
             keys: keys.into(),
             k: usize::try_from(k).unwrap_or(usize::MAX),
             heap: BinaryHeap::new(),
             seq: 0,
+            limit,
         }
     }
 }
@@ -228,6 +236,7 @@ impl Operator for TopK {
         self.seq += 1;
         if self.heap.len() < self.k {
             self.heap.push(entry);
+            check_limit("sort", self.heap.len(), self.limit)?;
         } else if let Some(mut worst) = self.heap.peek_mut() {
             if entry < *worst {
                 *worst = entry;

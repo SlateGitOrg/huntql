@@ -274,6 +274,44 @@ fn group_limit_is_enforced() {
 }
 
 #[test]
+fn group_limit_covers_top_k_and_tail() {
+    // `sort | head k` is fused into TopK and `tail n` buffers n rows; a huge
+    // k or n must not lift the --max-groups cap that a plain `sort` honours.
+    let cat = Catalog::from_dir(&fixture("demo")).unwrap();
+    let run = |q: &str, max_groups: usize| {
+        let mut buf = Vec::new();
+        huntql::run_query(
+            q,
+            &cat,
+            OutputFormat::Tsv,
+            Box::new(&mut buf),
+            ExecOptions { max_groups },
+        )
+        .map(|_| String::from_utf8(buf).unwrap())
+    };
+    for (q, op) in [
+        ("conn | sort ts", "sort"),
+        ("conn | sort ts | head 99999999999", "sort"),
+        ("conn | sort -ts | head 6", "sort"),
+        ("conn | tail 100000", "tail"),
+        ("conn | tail 6", "tail"),
+    ] {
+        let err = run(q, 5).unwrap_err();
+        assert!(matches!(err, Error::Exec(_)), "{q}: {err}");
+        assert!(
+            err.to_string().contains("group limit of 5 exceeded"),
+            "{q}: {err}"
+        );
+        assert!(err.render("").starts_with(&format!("error: {op}")), "{q}");
+    }
+    // At or under the cap both operators still work and keep only k / n rows.
+    for q in ["conn | sort ts | head 5", "conn | tail 5"] {
+        let out = run(q, 5).unwrap_or_else(|e| panic!("{q}: {e}"));
+        assert_eq!(out.lines().count(), 6, "{q}: header + 5 rows\n{out}");
+    }
+}
+
+#[test]
 fn missing_logs_and_query_errors_render() {
     let dir = scratch("empty");
     let cat = Catalog::from_dir(&dir).unwrap();
