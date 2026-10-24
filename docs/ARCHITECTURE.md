@@ -124,8 +124,9 @@ downstream operators.
 Two mechanisms keep this honest:
 
 * `ExecOptions::max_groups` (CLI `--max-groups`, default 2,000,000) caps the
-  rows/groups any single blocking operator may hold; exceeding it is a clean
-  `ExecError::GroupLimit`, not an out-of-memory crash.
+  rows/groups any single blocking operator may hold — including the TopK heap
+  and the `tail` ring buffer, so a huge `head k` or `tail n` cannot lift it;
+  exceeding it is a clean `ExecError::GroupLimit`, not an out-of-memory crash.
 * `beacon` stores at most `max_events` (default 20,000) timestamps per group;
   further connections still count toward `count` but are not stored.
 

@@ -242,8 +242,10 @@ running on the machine at the same time:
 Streaming and top-k queries stay at ~3.2 MiB RSS when the input grows 15×
 (`head` stops the scan after 10 rows); grouping queries grow with the
 number of groups, and a one-group-per-row query (`by uid`) grows with the
-input — which is why every blocking operator is capped by `--max-groups`
-(default 2,000,000; exceeding it is a clean error) and `beacon` stores at
+input — which is why every blocking operator (`sort`, the fused
+`sort | head k` top-k heap, `tail`, `stats`, `dedup` and the hunting
+operators) is capped by `--max-groups` (default 2,000,000; exceeding it is a
+clean error, so a huge `head k` or `tail n` cannot lift it) and `beacon` stores at
 most `max_events` timestamps per channel. "peak state" is the executor's own
 count of retained rows/groups (`--stats`). The `stats ... by src` query
 decodes 2 of 21 columns (column pruning) and runs at ~2.3 M rows/s; the
