@@ -3,7 +3,7 @@ CARGO ?= cargo
 BIN := $(or $(CARGO_TARGET_DIR),target)/release/huntql
 COVERAGE_MIN ?= 85
 
-.PHONY: check fmt-check lint test coverage build demo eval bench fixtures golden clean
+.PHONY: check fmt-check lint test coverage build demo eval bench fixtures golden loc clean
 
 check: fmt-check lint test coverage
 
@@ -48,6 +48,13 @@ fixtures: build
 
 golden:
 	UPDATE_GOLDEN=1 $(CARGO) test --test golden
+
+# Line counts quoted in the README.
+loc:
+	@printf 'source lines (src/, excluding blank lines, // comments and #[cfg(test)] modules): '
+	@for f in $$(find src -name '*.rs'); do awk '/^#\[cfg\(test\)\]/{exit} {print}' $$f; done | grep -v '^[[:space:]]*$$' | grep -v '^[[:space:]]*//' | wc -l | tr -d ' '
+	@printf 'integration/property/golden test code (tests/*.rs): '
+	@cat tests/*.rs | wc -l | tr -d ' '
 
 clean:
 	$(CARGO) clean
