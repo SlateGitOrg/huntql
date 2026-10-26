@@ -2,6 +2,8 @@
 
 A pipe-based threat-hunting query language for Zeek logs, written in Rust.
 
+[![CI](https://github.com/SlateGitOrg/huntql/actions/workflows/ci.yml/badge.svg)](https://github.com/SlateGitOrg/huntql/actions/workflows/ci.yml)
+
 ```text
 conn | where dport == 443 | stats count() by src | sort -count | head 10
 conn | beacon
@@ -19,7 +21,7 @@ in: `stack` (long-tail frequency), `rare`, `first_seen`, and `beacon`, which
 scores connection periodicity from inter-arrival jitter and FFT
 autocorrelation.
 
-**Who it is for:** threat hunters and SOC analysts who have Zeek logs on
+**Audience:** threat hunters and SOC analysts who have Zeek logs on
 disk and want hunting staples (beaconing, long tails, first sightings) as
 one-liners without standing up a SIEM; and engineers interested in a small,
 complete query-language implementation (lexer → parser → typed AST → planner
@@ -257,7 +259,7 @@ rows/s.
 | Check | Command | Result |
 |---|---|---|
 | format + lint + tests + coverage | `make check` | passes from a fresh clone |
-| tests | `cargo test` | 98 tests: 70 unit, 10 engine, 8 CLI, 9 property-based, 1 golden suite of 25 queries |
+| tests | `cargo test` | 99 tests: 70 unit, 11 engine, 8 CLI, 9 property-based, 1 golden suite of 25 queries |
 | line coverage | `make coverage` (`cargo llvm-cov --summary-only`) | 95.5% (gate: 85%) |
 | size | `make loc` | 7,476 source lines in `src/` (excluding blanks, comments and unit-test modules); 1,028 lines in `tests/*.rs` |
 
@@ -267,7 +269,7 @@ identically; top-k equals stable sort + head; streaming pipelines retain no
 rows; aggregation counts sum to the input; time formatting round-trips.
 Golden tests pin the output (and rendered errors) of 25 queries. The CI
 workflow (`.github/workflows/ci.yml`) runs `make check`, `make demo` and
-`make eval`; it has not run yet because the repository has not been pushed.
+`make eval` on every push and pull request.
 
 ## Design decisions
 
@@ -291,7 +293,7 @@ The full list with trade-offs is in [DECISIONS.md](DECISIONS.md). Highlights:
 ## Limitations
 
 * **Synthetic evaluation only.** No real traffic was used. The generator
-  encodes my assumptions about benign traffic (Poisson pollers, log-normal
+  encodes assumptions about benign traffic (Poisson pollers, log-normal
   sync clients, diurnal bursty browsing) and about implants ("sleep minus up
   to j" jitter, near-constant payloads). Held-out seeds guard against
   overfitting to particular random draws, not against those assumptions.
